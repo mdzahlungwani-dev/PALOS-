@@ -1,0 +1,7 @@
+CREATE TABLE insights (
+    id UUID PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    insight TEXT,
+    confidence FLOAT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
