@@ -1,0 +1,8 @@
+from pydantic import BaseModel
+from typing import Optional, Dict
+
+class EventCreate(BaseModel):
+    user_id: str
+    event_type: str
+    metadata: Dict
+    emotional_weight: Optional[float]
