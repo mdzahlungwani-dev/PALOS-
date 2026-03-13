@@ -1,0 +1,18 @@
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from ..database import SessionLocal
+from .. import schemas, crud
+
+router = APIRouter()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@router.post("/events")
+def create_event(event: schemas.EventCreate, db: Session = Depends(get_db)):
+    return crud.create_event(db, event)
